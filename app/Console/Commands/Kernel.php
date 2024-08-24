@@ -10,8 +10,9 @@ class Kernel extends ConsoleKernel
    
     
     protected $commands = [
-          \App\Console\Commands\FetchPrivatbankExchangeRates::class,
-        
+        //   \App\Console\Commans\FetchPrivatbankExchangeRates::class,
+        //   \App\Console\Commands\FetchMonoBankExchangeRates::class,
+        \App\Console\Commands\StategyRates::class,
     ];
 
     
