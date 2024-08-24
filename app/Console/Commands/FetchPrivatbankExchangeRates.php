@@ -5,9 +5,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\RequestException;
-use App\Console\ExchangeRates;
+use App\Console\Command\ExchangeRatesInterface;
 
-class FetchPrivatbankExchangeRates implements ExchangeRates
+class FetchPrivatbankExchangeRates implements ExchangeRatesInterface
 {
     protected $description = 'Fetch exchange rates from PrivatBank';
 

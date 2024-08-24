@@ -4,9 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use App\Console\ExchangeRates;
+use App\Console\Command\ExchangeRatesInterface;
 
-class FetchMonobankExchangeRates implements ExchangeRates
+class FetchMonobankExchangeRates implements ExchangeRatesInterface
 {   
     protected $description = 'Fetch exchange rates from monobank';
 
