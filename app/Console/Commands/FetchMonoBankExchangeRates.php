@@ -1,17 +1,14 @@
 <?php
 
-namespace App\Console;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use App\Console\ExchangeRates;
 
-class FetchMonoBankExchangeRates extends Command implements ExchangeRates
-{
-    
-    // protected $signature = 'fetch:monobank-rates';
+class FetchMonobankExchangeRates extends Command implements ExchangeRates
+{   
     protected $description = 'Fetch exchange rates from monobank';
-
 
     public function getExchangeRates() {
 
@@ -23,20 +20,17 @@ class FetchMonoBankExchangeRates extends Command implements ExchangeRates
           
                 $firstRate = $rates[0];
                 $secondRate = $rates[1];
-
+                if (isset($firstRate['currencyCodeA'], $firstRate['rateBuy'], $rate['rateSell'], $secondRate['currencyCodeA'], $secondRate['rateBuy'],$secondRate['rateSell'])) {
                 $this->info("Currency: {$firstRate['currencyCodeA']}, Buy: {$firstRate['rateBuy']}, Sale: {$firstRate['rateSell']}");
-
                 $this->info("Currency: {$secondRate['currencyCodeA']}, Buy: {$secondRate['rateBuy']}, Sale: {$secondRate['rateSell']}");            
-                
-                
+                }
         } else {
             
-            $this->error('Not possible to get monobank exchange rates');
+            $this->error('Failed to fetch monobank exchange rates');
         }
-        if (env('EXCHANGE_RATE_PROVIDER') == "privat24"){
-            $this->info('Local Enviroment privat24');
-        }
+    
         $this->info($this->description);
     }
 }
+
 
