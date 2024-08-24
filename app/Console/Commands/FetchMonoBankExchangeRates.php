@@ -20,10 +20,10 @@ class FetchMonobankExchangeRates implements ExchangeRates
           
                 $firstRate = $rates[0];
                 $secondRate = $rates[1];
-                if (isset($firstRate['currencyCodeA'], $firstRate['rateBuy'], $rate['rateSell'], $secondRate['currencyCodeA'], $secondRate['rateBuy'],$secondRate['rateSell'])) {
+                // if (isset($firstRate['currencyCodeA'], $firstRate['rateBuy'], $rate['rateSell'])) {
                     print_r("Currency: {$firstRate['currencyCodeA']}, Buy: {$firstRate['rateBuy']}, Sale: {$firstRate['rateSell']}");
                     print_r("Currency: {$secondRate['currencyCodeA']}, Buy: {$secondRate['rateBuy']}, Sale: {$secondRate['rateSell']}");            
-                }
+                // }
         } else {
             
             print_r('Failed to fetch monobank exchange rates');
