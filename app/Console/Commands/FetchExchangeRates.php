@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Console;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Console\FetchMonobankExchangeRates;
-use App\Console\FetchPrivatbankExchangeRates;
+use App\Console\Commands\FetchMonobankExchangeRates;
+use App\Console\Commands\FetchPrivatbankExchangeRates;
 
 class FetchExchangeRates extends Command
 {
@@ -33,7 +33,7 @@ class FetchExchangeRates extends Command
                 break;
 
             default:
-                $this->info('No provider available');
+                print_r('No provider available');
                 break;
         }
     }

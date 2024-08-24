@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Console;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\RequestException;
 use App\Console\ExchangeRates;
 
-class FetchPrivatbankExchangeRates extends Command implements ExchangeRates
+class FetchPrivatbankExchangeRates implements ExchangeRates
 {
     protected $description = 'Fetch exchange rates from PrivatBank';
 
@@ -19,12 +19,12 @@ class FetchPrivatbankExchangeRates extends Command implements ExchangeRates
                 $rates = $response->json();
                 foreach ($rates as $rate) {
                     if (isset($rate['ccy'], $rate['buy'], $rate['sale'])) {
-                    $this->info("Currency: {$rate['ccy']}, Buy: {$rate['buy']}, Sale: {$rate['sale']}");
+                    print_r("Currency: {$rate['ccy']}, Buy: {$rate['buy']}, Sale: {$rate['sale']}");
                     }
                 }
             }
              else {
-                $this->error('Failed to fetch PrivatBank exchange rates.');   
+                print_r('Failed to fetch PrivatBank exchange rates.');   
                 }   
         }
     }
