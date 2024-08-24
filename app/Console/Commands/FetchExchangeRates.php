@@ -13,9 +13,7 @@ class FetchExchangeRates extends Command
 
     public function handle()
     {
-        printr("test");
-        $fetchRates = new FetchPrivatbankExchangeRates();
-        $rate = $fetchRates->handle();
+    
         $this->getRates();
     }
 
