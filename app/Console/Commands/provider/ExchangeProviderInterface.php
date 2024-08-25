@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\provider;
+
+use App\Console\Commands\dto\RatesDTO;
 
 interface ExchangeProviderInterface
 {
-    public function getRates(): array;
+    public function getRates(): RatesDTO;
 }

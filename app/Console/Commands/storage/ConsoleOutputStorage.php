@@ -2,22 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Console\Commands;
+namespace App\Console\Commands\storage;
 
-use App\Console\Commands\storage\RatesStorageInterface;
+use App\Console\Commands\dto\RatesDTO;
 use Console_Table;
 
 class ConsoleOutputStorage implements RatesStorageInterface
 {
-    public function save(array $data): void
+    public function save(RatesDTO $ratesDTO): void
     {
         $table = new Console_Table();
-        $table->setHeaders($data[0]);
+        $table->setHeaders($ratesDTO->getHeaders());
 
-        unset($data[0]);
-
-        foreach ($data as $key) {
-            $table->addRow($key);
+        foreach ($ratesDTO->getBody() as $row) {
+            $table->addRow($row);
         }
 
         print_r($table->getTable());
