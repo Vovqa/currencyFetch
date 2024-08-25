@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'xe' => [
+    'id' => env('XE_API_ID'),
+    'key' => env('XE_API_KEY'),
+],
+
 ];

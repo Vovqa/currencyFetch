@@ -2,31 +2,33 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use GuzzleHttp\Exception\RequestException;
-use App\Console\Command\ExchangeRatesInterface;
+use App\Console\Commands\ExchangeRatesInterface;
+use Console_Table;
 
 class FetchPrivatbankExchangeRates implements ExchangeRatesInterface
 {
+
     protected $description = 'Fetch exchange rates from PrivatBank';
 
-        public function getExchangeRates() {       
-           
-            $response = Http::get('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5');
-                   
-            if ($response->successful()) {
-                $rates = $response->json();
-                foreach ($rates as $rate) {
-                    if (isset($rate['ccy'], $rate['buy'], $rate['sale'])) {
-                    print_r("Currency: {$rate['ccy']}, Buy: {$rate['buy']}, Sale: {$rate['sale']}");
-                    }
+    public function getExchangeRates()
+    {
+        $response = Http::get('https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5');
+
+        $table = new Console_Table();
+        $table->setHeaders(['Currency', 'Buy', 'Sale']);
+
+        if ($response->successful()) {
+            $rates = $response->json();
+            foreach ($rates as $rate) {
+                if (isset($rate['ccy'], $rate['buy'], $rate['sale'])) {
+                    $table->addRow([$rate['ccy'], $rate['buy'], $rate['sale']]);
                 }
             }
-             else {
-                print_r('Failed to fetch PrivatBank exchange rates.');   
-                }   
+        } else {
+            print_r('Failed to fetch Privat rates.');
         }
+        print_r($table->getTable());
+        print_r($this->description);
     }
-
-
+}

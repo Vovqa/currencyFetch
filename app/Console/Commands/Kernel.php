@@ -2,7 +2,7 @@
 
 namespace App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\FetchExchangeRates;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel

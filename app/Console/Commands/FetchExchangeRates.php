@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Console\Commands\FetchMonobankExchangeRates;
 use App\Console\Commands\FetchPrivatbankExchangeRates;
+use App\Console\Commands\FetchFixerExchangeRates;
+use App\Console\Commands\FetchXeExchangeRates;
 
 class FetchExchangeRates extends Command
 {
@@ -13,7 +15,7 @@ class FetchExchangeRates extends Command
 
     public function handle()
     {
-    
+
         $this->getRates();
     }
 
@@ -29,6 +31,16 @@ class FetchExchangeRates extends Command
 
             case "mono":
                 $rates = new FetchMonoBankExchangeRates();
+                $rates->getExchangeRates();
+                break;
+
+            case "fixer":
+                $rates = new FetchFixerExchangeRates();
+                $rates->getExchangeRates();
+                break;
+
+            case "xe":
+                $rates = new FetchXeExchangeRates();
                 $rates->getExchangeRates();
                 break;
 
